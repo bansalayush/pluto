@@ -21,6 +21,9 @@
             android:name=".plugins.preferences.PreferencesActivity"
             android:exported="false" />
         <activity
+            android:name=".plugins.roomdb.RoomDBActivity"
+            android:exported="false" />
+        <activity
             android:name=".plugins.exceptions.ExceptionActivity"
             android:exported="false" />
         <activity android:name=".MainActivity"

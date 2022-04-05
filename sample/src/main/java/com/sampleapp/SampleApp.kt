@@ -15,6 +15,10 @@ import com.sampleapp.plugins.SupportedPlugins.Companion.EXCEPTIONS
 import com.sampleapp.plugins.SupportedPlugins.Companion.LOGGER
 import com.sampleapp.plugins.SupportedPlugins.Companion.NETWORK
 import com.sampleapp.plugins.SupportedPlugins.Companion.PREFERENCES
+import com.sampleapp.plugins.roomdb.internal.AppDatabase
+import com.sampleapp.plugins.roomdb.internal.AppDatabaseManager
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlin.system.exitProcess
 import timber.log.Timber
 
@@ -22,6 +26,7 @@ class SampleApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        SampleApp.context = this
         Pluto.Installer(this)
             .addPlugin(DemoPlugin(DEMO))
             .addPlugin(PlutoExceptionsPlugin(EXCEPTIONS))
@@ -33,6 +38,8 @@ class SampleApp : Application() {
 
         plantPlutoTimber()
         setExceptionListener()
+
+
     }
 
     /**
@@ -50,5 +57,10 @@ class SampleApp : Application() {
             Log.d("exception_demo", "uncaught exception handled on thread: " + thread.name, throwable)
             exitProcess(0)
         }
+    }
+
+    companion object {
+        lateinit var context: SampleApp
+            private set
     }
 }

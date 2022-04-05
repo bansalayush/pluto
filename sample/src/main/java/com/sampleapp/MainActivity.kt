@@ -1,5 +1,6 @@
 package com.sampleapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.pluto.Pluto
@@ -7,6 +8,8 @@ import com.sampleapp.databinding.ActivityMainBinding
 import com.sampleapp.list.PluginListAdapter
 import com.sampleapp.list.PluginListItem
 import com.sampleapp.plugins.SupportedPlugins
+import com.sampleapp.plugins.preferences.PreferencesActivity
+import com.sampleapp.plugins.roomdb.RoomDBActivity
 import com.sampleapp.utils.DiffAdapter
 import com.sampleapp.utils.DiffAwareHolder
 import com.sampleapp.utils.ListAdapter
@@ -64,7 +67,8 @@ class MainActivity : AppCompatActivity() {
     private val onActionListener = object : DiffAdapter.OnActionListener {
         override fun onAction(action: String, data: ListItem, holder: DiffAwareHolder?) {
             if (data is PluginListItem) {
-                SupportedPlugins.openPlugin(this@MainActivity, data)
+                startActivity(Intent(this@MainActivity, RoomDBActivity::class.java))
+//                SupportedPlugins.openPlugin(this@MainActivity, data)
             }
         }
     }
